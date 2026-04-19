@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>{{ notice.title }}</h2>
+
+    <div>
+        <span class="badge {{ notice.priority|lower }}">{{ notice.priority }} Priority</span>
+        <span class="badge normal-badge">{{ notice.category }}</span>
+    </div>
+
+    <p class="muted">
+        Department: {{ notice.department }} |
+        Year: {{ notice.year }} |
+        Posted by: {{ notice.posted_by }} |
+        Date: {{ notice.created_at }}
+    </p>
+
+    <p class="notice-full">{{ notice.content }}</p>
+
+    <a class="btn" href="{{ url_for('dashboard') }}">Back</a>
+</div>
+{% endblock %}

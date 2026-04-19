@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>Student Dashboard</h2>
+    <p class="muted">
+        Welcome, {{ session.get('name') }} | Department: {{ department }} | Year: {{ year }}
+    </p>
+
+    <form method="GET" class="grid">
+        <div>
+            <label>Search</label>
+            <input type="text" name="search" value="{{ search }}" placeholder="Search notices">
+        </div>
+
+        <div>
+            <label>Category</label>
+            <select name="category">
+                <option value="">All</option>
+                <option value="Exam" {% if category == 'Exam' %}selected{% endif %}>Exam</option>
+                <option value="Event" {% if category == 'Event' %}selected{% endif %}>Event</option>
+                <option value="Holiday" {% if category == 'Holiday' %}selected{% endif %}>Holiday</option>
+                <option value="Placement" {% if category == 'Placement' %}selected{% endif %}>Placement</option>
+                <option value="General" {% if category == 'General' %}selected{% endif %}>General</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Priority</label>
+            <select name="priority">
+                <option value="">All</option>
+                <option value="High" {% if priority == 'High' %}selected{% endif %}>High</option>
+                <option value="Medium" {% if priority == 'Medium' %}selected{% endif %}>Medium</option>
+                <option value="Low" {% if priority == 'Low' %}selected{% endif %}>Low</option>
+            </select>
+        </div>
+
+        <div class="filter-btn-box">
+            <button class="btn" type="submit">Apply Filters</button>
+        </div>
+    </form>
+</div>
+
+{% if notices %}
+    {% for notice in notices %}
+    <div class="notice-card">
+        <h3>{{ notice.title }}</h3>
+        <div>
+            <span class="badge {{ notice.priority|lower }}">{{ notice.priority }} Priority</span>
+            <span class="badge normal-badge">{{ notice.category }}</span>
+            {% if notice.is_new %}
+                <span class="badge new-badge">NEW</span>
+            {% endif %}
+        </div>
+
+        <p class="muted">
+            Department: {{ notice.department }} | Year: {{ notice.year }} | Posted on: {{ notice.created_at }}
+        </p>
+
+        <p>
+            {{ notice.content[:160] }}{% if notice.content|length > 160 %}...{% endif %}
+        </p>
+
+        <a class="btn" href="{{ url_for('view_notice', notice_id=notice.id) }}">Read More</a>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="card empty">No notices found for your filters.</div>
+{% endif %}
+{% endblock %}

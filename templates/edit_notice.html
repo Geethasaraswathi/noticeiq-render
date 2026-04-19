@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-box">
+    <h2>Edit Notice</h2>
+
+    <form method="POST">
+        <label>Title</label>
+        <input type="text" name="title" value="{{ notice.title }}" required>
+
+        <label>Content</label>
+        <textarea name="content" required>{{ notice.content }}</textarea>
+
+        <div class="grid">
+            <div>
+                <label>Department</label>
+                <select name="department" required>
+                    <option value="CSE" {% if notice.department == 'CSE' %}selected{% endif %}>CSE</option>
+                    <option value="ECE" {% if notice.department == 'ECE' %}selected{% endif %}>ECE</option>
+                    <option value="EEE" {% if notice.department == 'EEE' %}selected{% endif %}>EEE</option>
+                    <option value="MECH" {% if notice.department == 'MECH' %}selected{% endif %}>MECH</option>
+                    <option value="CIVIL" {% if notice.department == 'CIVIL' %}selected{% endif %}>CIVIL</option>
+                    <option value="CSM" {% if notice.department == 'CSM' %}selected{% endif %}>CSM</option>
+                    <option value="CSD" {% if notice.department == 'CSD' %}selected{% endif %}>CSD</option>
+                    <option value="CSO" {% if notice.department == 'CSO' %}selected{% endif %}>CSO</option>
+                    <option value="IT" {% if notice.department == 'IT' %}selected{% endif %}>IT</option>
+                    <option value="AIML" {% if notice.department == 'AIML' %}selected{% endif %}>AIML</option>
+                    <option value="AIDS" {% if notice.department == 'AIDS' %}selected{% endif %}>AIDS</option>
+                    <option value="All" {% if notice.department == 'All' %}selected{% endif %}>All</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Year</label>
+                <select name="year" required>
+                    <option value="1" {% if notice.year == '1' %}selected{% endif %}>1</option>
+                    <option value="2" {% if notice.year == '2' %}selected{% endif %}>2</option>
+                    <option value="3" {% if notice.year == '3' %}selected{% endif %}>3</option>
+                    <option value="4" {% if notice.year == '4' %}selected{% endif %}>4</option>
+                    <option value="All" {% if notice.year == 'All' %}selected{% endif %}>All</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Category</label>
+                <select name="category" required>
+                    <option value="Exam" {% if notice.category == 'Exam' %}selected{% endif %}>Exam</option>
+                    <option value="Event" {% if notice.category == 'Event' %}selected{% endif %}>Event</option>
+                    <option value="Holiday" {% if notice.category == 'Holiday' %}selected{% endif %}>Holiday</option>
+                    <option value="Placement" {% if notice.category == 'Placement' %}selected{% endif %}>Placement</option>
+                    <option value="General" {% if notice.category == 'General' %}selected{% endif %}>General</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Priority</label>
+                <select name="priority" required>
+                    <option value="High" {% if notice.priority == 'High' %}selected{% endif %}>High</option>
+                    <option value="Medium" {% if notice.priority == 'Medium' %}selected{% endif %}>Medium</option>
+                    <option value="Low" {% if notice.priority == 'Low' %}selected{% endif %}>Low</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="btn" type="submit">Update Notice</button>
+    </form>
+</div>
+{% endblock %}

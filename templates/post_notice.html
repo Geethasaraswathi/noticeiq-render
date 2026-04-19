@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-box">
+    <h2>Post Notice</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label>Title</label>
+        <input type="text" name="title" required>
+
+        <label>Content</label>
+        <textarea name="content" required></textarea>
+
+        <div class="grid">
+            <div>
+                <label>Department</label>
+                <select name="department" required>
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="MECH">MECH</option>
+                    <option value="CIVIL">CIVIL</option>
+                    <option value="CSM">CSM</option>
+                    <option value="CSD">CSD</option>
+                    <option value="CSO">CSO</option>
+                    <option value="IT">IT</option>
+                    <option value="AIML">AIML</option>
+                    <option value="AIDS">AIDS</option>
+                    <option value="All">All</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Year</label>
+                <select name="year" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="All">All</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Category</label>
+                <select name="category" required>
+                    <option value="Exam">Exam</option>
+                    <option value="Event">Event</option>
+                    <option value="Holiday">Holiday</option>
+                    <option value="Placement">Placement</option>
+                    <option value="General">General</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Priority</label>
+                <select name="priority" required>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+        </div>
+
+        <label>Attachment (optional)</label>
+        <input type="file" name="attachment" multiple>
+
+        <button class="btn" type="submit">Publish Notice</button>
+    </form>
+</div>
+{% endblock %}

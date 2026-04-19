@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>NoticeIQ</h1>
+    <p>A basic intelligent notice management website for educational institutions.</p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Centralized Notices</h3>
+            <p>Admins can post all institutional notices in one place.</p>
+        </div>
+
+        <div class="card">
+            <h3>Personalized View</h3>
+            <p>Students can view notices based on department and year.</p>
+        </div>
+
+        <div class="card">
+            <h3>Search & Filter</h3>
+            <p>Quickly find important notices with keyword search and filters.</p>
+        </div>
+    </div>
+
+    <a class="btn" href="{{ url_for('login') }}">Get Started</a>
+</div>
+{% endblock %}

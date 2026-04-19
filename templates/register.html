@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="form-box small-box">
+        <h2>Register</h2>
+
+        <form method="POST" class="auth-form">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Create password" required>
+            </div>
+
+            <div class="form-group">
+                <label>Role</label>
+                <select name="role" id="role" onchange="toggleAdminSecret()" required>
+                    <option value="student">Student</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="admin-secret-box" style="display:none;">
+                <label>Admin Secret Code</label>
+                <input type="password" name="admin_secret" placeholder="Enter admin secret code">
+            </div>
+
+            <div class="form-group">
+                <label>Department</label>
+                <select name="department" required>
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="MECH">MECH</option>
+                    <option value="CIVIL">CIVIL</option>
+                    <option value="CSM">CSM</option>
+                    <option value="CSD">CSD</option>
+                    <option value="CSO">CSO</option>
+                    <option value="IT">IT</option>
+                    <option value="AIML">AIML</option>
+                    <option value="AIDS">AIDS</option>
+                    <option value="All">All</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Year</label>
+                <select name="year" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="All">All</option>
+                </select>
+            </div>
+
+            <button class="btn auth-btn" type="submit">Register</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function toggleAdminSecret() {
+    const role = document.getElementById("role").value;
+    const box = document.getElementById("admin-secret-box");
+    box.style.display = role === "admin" ? "block" : "none";
+}
+</script>
+{% endblock %}

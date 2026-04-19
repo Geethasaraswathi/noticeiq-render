@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>Admin Dashboard</h2>
+    <p class="muted">Welcome, {{ session.get('name') }}</p>
+    <a class="btn" href="{{ url_for('post_notice') }}">Post New Notice</a>
+</div>
+
+<h3>All Notices</h3>
+
+<form method="GET" style="margin:20px 0;">
+    
+    <div style="display:flex; gap:12px; align-items:center; flex-wrap:nowrap;">
+
+        <input
+            type="text"
+            name="search"
+            value="{{ search }}"
+            placeholder="Quick search by title, content, department, category, priority"
+            style="
+                flex:1;
+                padding:14px;
+                border-radius:12px;
+                border:1px solid rgba(255,255,255,0.2);
+                background:rgba(255,255,255,0.08);
+                color:white;
+                min-width:0;
+            "
+        >
+
+        <button type="submit"
+            style="
+                padding:14px 26px;
+                border:none;
+                border-radius:12px;
+                background:#3b82f6;
+                color:white;
+                font-weight:600;
+                cursor:pointer;
+                white-space:nowrap;
+            ">
+            Search
+        </button>
+
+        <a href="{{ url_for('admin_dashboard') }}"
+           style="
+                padding:14px 26px;
+                border-radius:12px;
+                background:#60a5fa;
+                color:white;
+                text-decoration:none;
+                font-weight:600;
+                white-space:nowrap;
+                display:inline-block;
+           ">
+           Clear
+        </a>
+
+    </div>
+
+</form>
+<table></table>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Department</th>
+            <th>Year</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Posted On</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if notices %}
+            {% for notice in notices %}
+            <tr>
+                <td>{{ notice.title }}</td>
+                <td>{{ notice.department }}</td>
+                <td>{{ notice.year }}</td>
+                <td>{{ notice.category }}</td>
+                <td>{{ notice.priority }}</td>
+                <td>{{ notice.created_at }}</td>
+                <td class="actions">
+                    <a class="btn btn-secondary" href="{{ url_for('view_notice', notice_id=notice.id) }}">View</a>
+                    <a class="btn" href="{{ url_for('edit_notice', notice_id=notice.id) }}">Edit</a>
+                    <a class="btn btn-danger" href="{{ url_for('delete_notice', notice_id=notice.id) }}" onclick="return confirm('Delete this notice?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="7" class="empty">No notices posted yet.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}
